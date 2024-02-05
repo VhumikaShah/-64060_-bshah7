@@ -1,0 +1,45 @@
+---
+title: "Bhumika.Assingment 1"
+output:
+  html_document: default
+  pdf_document: default
+date: "2024-02-04"
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Loading the excel files 
+library(tidyverse)
+Airline <- read_csv("C:/Users/vhume/Desktop/FML/Assingments/Airlines_Delays.csv")
+Airlines <- as.data.frame(Airline)
+as.tibble(Airlines)
+```
+```{r}
+#descriptive statistics for a selection of quantitative and categorical variables
+summary(Airlines)
+head(Airlines)
+tail(Airlines)
+```
+
+
+```{r}
+# Transforming one column name from double to integer
+Airlines <- na.omit(Airlines)# removing NA values
+Airlines$id <- as.integer(Airlines$id)
+Airlines$DayOfWeek <- as.integer(Airlines$DayOfWeek)
+```
+```{r}
+# Plotting Graph for the distance of flight between the airports
+library(ggplot2)
+scatter_plot <- ggplot(Airlines,aes(x = Flight, y = Length)) +
+  geom_point(color = "pink") +
+  labs(title = "Flight Length between the Airports",
+       xlab = "Flight",
+       ylab = "Length between Source and Destination")
+scatter_plot 
+
+```
+
